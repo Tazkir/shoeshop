@@ -1,5 +1,4 @@
 import {
-  USER_LIST_RESET,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -30,7 +29,6 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
-
     if (!data.isAdmin === true) {
       toast.error('You are not Admin', ToastObjects);
       dispatch({
