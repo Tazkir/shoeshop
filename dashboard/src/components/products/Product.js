@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Product = (props) => {
   const { product } = props;
@@ -15,7 +15,7 @@ const Product = (props) => {
             <Link to="#" className="title text-truncate">
               {product.name}
             </Link>
-            <div className="price mb-2">${product.price}</div>
+            <div className="price mb-2">RM {product.price}</div>
             <div className="row">
               <Link
                 to={`/product/${product._id}/edit`}
