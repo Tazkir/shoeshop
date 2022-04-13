@@ -1,7 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 
-const Orders = () => {
+const Orders = (props) => {
+  const { orders } = props;
   return (
     <table className="table">
       <thead>
@@ -10,7 +12,8 @@ const Orders = () => {
           <th scope="col">Email</th>
           <th scope="col">Total</th>
           <th scope="col">Paid</th>
-          <th scope="col">Date</th>
+          <th scope="col">Item & Quantity</th>
+          <th scope="col">Order Date</th>
           <th>Status</th>
           <th scope="col" className="text-end">
             Action
@@ -18,29 +21,53 @@ const Orders = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>
-            <b>Women Red Heels Sandal</b>
-          </td>
-          <td>user@example.com</td>
-          <td>$45,789</td>
-          <td>
-            <span className="badge rounded-pill alert-success">
-              Paid At Today 23:56 AM
-            </span>
-          </td>
-          <td>Dec 12 2021</td>
-          <td>
-            <span className="badge btn-success">Delivered</span>
-          </td>
-          <td className="d-flex justify-content-end align-item-center">
-            <Link to={`/order`} className="text-success">
-              <i className="fas fa-eye"></i>
-            </Link>
-          </td>
-        </tr>
+        {orders.map((order) => (
+          <tr key={order._id}>
+            <td>
+              <b>{order.user.name}</b>
+            </td>
+            <td>{order.user.email}</td>
+            <td>RM {order.totalPrice}</td>
+            <td>
+              {order.isPaid ? (
+                <span className="badge rounded-pill alert-success">
+                  Paid At {moment(order.paidAt).format('LLL')}
+                </span>
+              ) : (
+                <span className="badge rounded-pill alert-danger">
+                  Not Paid
+                </span>
+              )}
+            </td>
+            {order.orderItems.map((item, index) => (
+              <td key={index} className="small d-flex ">
+                <ul>
+                  <li>
+                    {item.name} x{item.qty}
+                  </li>
+                </ul>
+              </td>
+            ))}
+            <td className="small">
+              {moment(order.createdAt).format('Do MMMM YYYY')}
+            </td>
+            <td>
+              {order.isDelivered ? (
+                <span className="badge btn-success">Delivered</span>
+              ) : (
+                <span className="badge btn-dark">Not delivered</span>
+              )}
+            </td>
+            <td className="d-flex justify-content-end align-item-center">
+              <Link to={`/order/${order._id}`} className="text-success">
+                <i className="fas fa-eye"></i>
+              </Link>
+            </td>
+          </tr>
+        ))}
+
         {/* Not paid Not delivered */}
-        <tr>
+        {/* <tr>
           <td>
             <b>Velcro Sneakers For Boys & Girls (Blue)</b>
           </td>
@@ -58,7 +85,7 @@ const Orders = () => {
               <i className="fas fa-eye"></i>
             </Link>
           </td>
-        </tr>
+        </tr> */}
       </tbody>
     </table>
   );
