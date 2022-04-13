@@ -149,7 +149,7 @@ const PlaceOrderScreen = ({ history }) => {
               <tbody>
                 <tr>
                   <td>
-                    <strong>Products</strong>
+                    <strong>Subtotal</strong>
                   </td>
                   <td>RM {cart.itemsPrice}</td>
                 </tr>

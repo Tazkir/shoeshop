@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
@@ -9,7 +9,7 @@ const Sidebar = () => {
           <Link to="/" className="brand-wrap">
             <img
               src="/images/logo.png"
-              style={{ height: "46" }}
+              style={{ height: '46' }}
               className="logo"
               alt="Ecommerce dashboard template"
             />
@@ -82,16 +82,6 @@ const Sidebar = () => {
               >
                 <i className="icon fas fa-user"></i>
                 <span className="text">Users</span>
-              </NavLink>
-            </li>
-            <li className="menu-item">
-              <NavLink
-                activeClassName="active"
-                className="menu-link disabled"
-                to="/sellers"
-              >
-                <i className="icon fas fa-store-alt"></i>
-                <span className="text">Sellers</span>
               </NavLink>
             </li>
 
