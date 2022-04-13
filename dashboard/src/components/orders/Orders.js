@@ -49,7 +49,7 @@ const Orders = (props) => {
               </td>
             ))}
             <td className="small">
-              {moment(order.createdAt).format('Do MMMM YYYY')}
+              {moment(order.createdAt).format('D/MMMM/YY LT')}
             </td>
             <td>
               {order.isDelivered ? (
