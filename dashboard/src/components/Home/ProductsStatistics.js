@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ProductsStatistics = () => {
   return (
@@ -6,10 +6,17 @@ const ProductsStatistics = () => {
       <div className="card mb-4 shadow-sm">
         <article className="card-body">
           <h5 className="card-title">Products statistics</h5>
-          <img
-            style={{ width: "100%", height: "350px", objectFit: "contain" }}
-            src="/images/product.png"
-          />
+          <iframe
+            style={{
+              background: '#FFFFFF',
+              border: 'none',
+              borderRadius: '2px',
+              boxShadow: '0 2px 10px 0 rgba(70, 76, 79, .2);',
+              width: '100%',
+              height: '350px',
+            }}
+            src="https://charts.mongodb.com/charts-shoeshop-xtskw/embed/charts?id=6256b97e-342b-411e-8344-dfcb0240bfc0&maxDataAge=3600&theme=light&autoRefresh=true"
+          ></iframe>
         </article>
       </div>
     </div>
