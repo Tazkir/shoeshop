@@ -4,7 +4,7 @@ import OrderDetailInfo from './OrderDetailInfo';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  // deliverOrder,
+  deliverOrder,
   getOrderDetails,
 } from '../../Redux/Actions/OrderActions';
 import Loading from '../LoadingError/Loading';
@@ -18,9 +18,16 @@ const OrderDetailmain = (props) => {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { loading, error, order } = orderDetails;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading: loadingDelivered, success: successDelivered } = orderDeliver;
+
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
-  }, [dispatch, orderId]);
+  }, [dispatch, orderId, successDelivered]);
+
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order));
+  };
 
   return (
     <section className="content-main">
@@ -52,16 +59,17 @@ const OrderDetailmain = (props) => {
               </div>
               <div className="col-lg-6 col-md-6 ms-auto d-flex justify-content-end align-items-center">
                 <select
+                  id="status"
                   className="form-select d-inline-block"
                   style={{ maxWidth: '200px' }}
                 >
-                  <option disabled selected value="">
+                  <option disabled selected hidden>
                     Change status
                   </option>
                   <option>Confirmed</option>
                   <option>Preparing</option>
                   <option>Ready to pickup</option>
-                  <option>Delivered</option>
+                  <option value="deliverd">Delivered</option>
                 </select>
                 <Link className="btn btn-success ms-2" to="#">
                   <i className="fas fa-print"></i>
@@ -82,22 +90,22 @@ const OrderDetailmain = (props) => {
               {/* Payment Info */}
               <div className="col-lg-3">
                 <div className="box shadow-sm bg-light">
-                  {/* {order.isDelivered ? (
+                  {order.isDelivered ? (
                     <button className="btn btn-success col-12">
-                      DELIVERED AT ({" "}
-                      {moment(order.isDeliveredAt).format("MMM Do YY")})
+                      DELIVERED AT ({' '}
+                      {moment(order.isDeliveredAt).format('LT Do MMMM YY')})
                     </button>
                   ) : (
                     <>
-                      {loadingDelivered && <Loading />} */}
-                  <button
-                    // onClick={deliverHandler}
-                    className="btn btn-dark col-12"
-                  >
-                    MARK AS DELIVERED
-                  </button>
-                  {/* </> */}
-                  {/* )} */}
+                      {loadingDelivered && <Loading />}
+                      <button
+                        onClick={deliverHandler}
+                        className="btn btn-dark col-12"
+                      >
+                        MARK AS DELIVERED
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

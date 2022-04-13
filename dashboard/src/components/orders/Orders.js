@@ -9,7 +9,7 @@ const Orders = (props) => {
       <thead>
         <tr>
           <th scope="col">Name</th>
-          <th scope="col">Email</th>
+          <th scope="col">Payment</th>
           <th scope="col">Total</th>
           <th scope="col">Paid</th>
           <th scope="col">Item & Quantity</th>
@@ -26,7 +26,7 @@ const Orders = (props) => {
             <td>
               <b>{order.user.name}</b>
             </td>
-            <td>{order.user.email}</td>
+            <td>{order.paymentMethod}</td>
             <td>RM {order.totalPrice}</td>
             <td>
               {order.isPaid ? (

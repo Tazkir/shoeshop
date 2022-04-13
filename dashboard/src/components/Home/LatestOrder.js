@@ -17,12 +17,20 @@ const LatestOrder = (props) => {
         <div className="table-responsive">
           <table className="table">
             <tbody>
-              {orders.slice(0, 10).map((order) => (
+              {orders.slice(0, 5).map((order) => (
                 <tr key={order._id}>
                   <td>
                     <b>{order.user.name}</b>
                   </td>
-                  <td>{order.user.email}</td>
+                  {order.orderItems.map((item, index) => (
+                    <td key={index} className="small d-flex ">
+                      <ul>
+                        <li>
+                          {item.name} x{item.qty}
+                        </li>
+                      </ul>
+                    </td>
+                  ))}
                   <td>${order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
